@@ -4,9 +4,9 @@ const scssPlugin = require("./plugins/esbuildSsrScssModulesPlugin");
 module.exports = {
   userScriptHeader: [
     ["@name", "Kiite cafe plus"],
-    ["@version", "0.1.0"],
+    ["@version", "0.1.1"],
     ["@license", "MIT"],
-    ["@author", "author"],
+    ["@author", "yakisova41"],
     ["@description", "kiite cafe Background playback and Continuous playback"],
     ["@description:ja", "kiite cafe バックグラウンド再生 連続再生"],
     ["@match", "https://cafe.kiite.jp/*"],
@@ -29,18 +29,18 @@ module.exports = {
   locales: {
     ja: {
       Name: {
-        message: "名前",
+        message: "Kiite cafe plus",
       },
       Description: {
-        message: "説明",
+        message: "kiite cafe バックグラウンド再生 連続再生",
       },
     },
     en: {
       Name: {
-        message: "name",
+        message: "Kiite cafe plus",
       },
       Description: {
-        message: "descruotion",
+        message: "kiite cafe Background playback and Continuous playback",
       },
     },
   },
