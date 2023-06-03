@@ -1,10 +1,10 @@
 const path = require("path");
 const scssPlugin = require("./plugins/esbuildSsrScssModulesPlugin");
-
+const packageJson = require("./package.json");
 module.exports = {
   userScriptHeader: [
     ["@name", "Kiite cafe plus"],
-    ["@version", "0.1.1"],
+    ["@version", packageJson.version],
     ["@license", "MIT"],
     ["@author", "yakisova41"],
     ["@description", "kiite cafe Background playback and Continuous playback"],
@@ -21,7 +21,7 @@ module.exports = {
   manifest: {
     name: "__MSG_Name__",
     short_name: "name",
-    version: "0.1.0",
+    version: packageJson.version,
     manifest_version: 3,
     description: "__MSG_Description__",
     default_locale: "en",
