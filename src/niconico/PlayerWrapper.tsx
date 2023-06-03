@@ -2,6 +2,10 @@ import { useEffect } from "react";
 import { useVideoJS } from "./react-videojs-player-core";
 import { usePostMessage } from "./post-message-hooks";
 
+/**
+ * videojsのイベントを親windowのpostMessageに渡したり、
+ * 受け取ったプレーヤー操作messageを処理する
+ */
 const PlayerWrapper: React.FunctionComponent = () => {
   const vjsplayer = useVideoJS();
   const postMessage = usePostMessage();

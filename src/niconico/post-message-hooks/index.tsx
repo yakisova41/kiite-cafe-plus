@@ -6,6 +6,10 @@ import React, {
 } from "react";
 import { PostMessageEventUtil } from "../../lib/PostMessageEventUtil";
 
+/**
+ * postMessage処理クラスをコンテキストに入れて使うラッパー
+ */
+
 const MessageEventWrapperProvider: React.FunctionComponent<{
   children: ReactNode;
   origin: string;

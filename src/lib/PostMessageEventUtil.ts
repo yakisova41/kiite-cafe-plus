@@ -1,3 +1,6 @@
+/**
+ * postmessageをイベントライクに使用するクラス
+ */
 export class PostMessageEventUtil {
   private readonly messageHandlers: Array<{
     type: string;
@@ -43,6 +46,9 @@ export class PostMessageEventUtil {
     });
   }
 
+  /**
+   * 一度だけcallbackを実行
+   */
   public one(type: string, callback: (data: PostMessage) => any): void {
     const callbackFnc = (data: PostMessage): any => {
       callback(data);
@@ -55,6 +61,10 @@ export class PostMessageEventUtil {
     });
   }
 
+  /**
+   * デバッグ用
+   * messageを発火
+   */
   public dispatch(type: string, value: any): void {
     this.messageHandlers.forEach((handler) => {
       if (handler.type === type) {
@@ -63,6 +73,9 @@ export class PostMessageEventUtil {
     });
   }
 
+  /**
+   * window.parentにpostMessageを送る
+   */
   public sendParent(type: string, value: any, origin: string = "*"): void {
     window.parent.postMessage({ type, value }, origin);
   }

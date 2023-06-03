@@ -10,7 +10,7 @@ const App: React.FunctionComponent = () => {
   const postMessage = usePostMessage();
 
   useEffect(() => {
-    debugLog("Kiite hack niconico client");
+    debugLog("Kiite plus niconico client");
 
     postMessage?.addMessageListener("setVideoId", ({ value }) => {
       debugLog(`new VideoId: ${String(value)}`);
