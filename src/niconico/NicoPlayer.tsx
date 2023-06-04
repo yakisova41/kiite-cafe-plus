@@ -14,15 +14,13 @@ const NicoPlayer: React.FunctionComponent = () => {
         initialWatchData?.data.owner?.nickname ??
         initialWatchData?.data.channel.name;
 
-      console.log(initialWatchData?.data.video.thumbnail);
-
       navigator.mediaSession.metadata = new MediaMetadata({
         title: initialWatchData?.data.video.title,
         artist: nickname,
         artwork: [
           {
-            src: String(initialWatchData?.data.video.thumbnail.ogp),
-            sizes: "936x720",
+            src: String(initialWatchData?.data.video.thumbnail.player),
+            sizes: "960x540",
             type: "image/jpeg",
           },
         ],
