@@ -12,6 +12,8 @@ const PlayerWrapper: React.FunctionComponent = () => {
 
   useEffect(() => {
     if (postMessage !== null && vjsplayer !== null) {
+      postMessage.sendParent("videojsAttached", null);
+
       postMessage.addMessageListener("setTime", ({ value }) => {
         vjsplayer.currentTime(value);
       });
@@ -22,6 +24,11 @@ const PlayerWrapper: React.FunctionComponent = () => {
 
       postMessage.addMessageListener("play", () => {
         void vjsplayer.play();
+      });
+
+      postMessage.addMessageListener("setVolume", ({ value }) => {
+        console.log(value);
+        void vjsplayer.volume(value);
       });
 
       const timeUpdateHandler = (): void => {
