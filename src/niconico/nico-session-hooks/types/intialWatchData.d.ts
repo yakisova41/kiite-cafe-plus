@@ -462,8 +462,8 @@ export interface Rating {
 
 export interface VideoThumbnail {
   url: string;
-  middleUrl: string;
-  largeUrl: string;
+  middleUrl: string | null;
+  largeUrl: string | null;
   player: string;
   ogp: string;
 }
