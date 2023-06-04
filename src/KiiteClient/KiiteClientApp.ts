@@ -9,9 +9,11 @@ export class KiiteClientApp {
   private readonly origin: string;
   private nowPlayData!: PlayData;
   private nextPlayData!: PlayData;
+  private readonly mode: "pc" | "mobile";
 
   public constructor(mode: "mobile" | "pc" = "mobile") {
     this.origin = "https://embed.nicovideo.jp";
+    this.mode = mode;
 
     if (mode === "mobile") {
       this.iframe = this.overridePlayer();
@@ -22,6 +24,12 @@ export class KiiteClientApp {
   }
 
   public async start(): Promise<void> {
+    this.postMessage.addMessageListener("videojsAttached", () => {
+      if (this.mode === "pc") {
+        this.volumeChangeHandler();
+      }
+    });
+
     this.postMessage.addMessageListener("playerRendered", async () => {
       debugLog("Player rendered");
 
@@ -86,6 +94,31 @@ export class KiiteClientApp {
     }
 
     return iframe;
+  }
+
+  private volumeChangeHandler(): void {
+    const volumeValEl = document.querySelector(".volume > .button > .value");
+
+    const getVolSend = () => {
+      const volume = Number(volumeValEl?.innerHTML) / 100;
+      this.sendMessage("setVolume", volume);
+
+      debugLog("setvol");
+    };
+
+    const ob = new MutationObserver(() => {
+      getVolSend();
+    });
+
+    if (volumeValEl !== null) {
+      ob.observe(volumeValEl, {
+        childList: true,
+        attributes: true,
+        characterData: true,
+      });
+
+      getVolSend();
+    }
   }
 
   private getNowCurrentTime(startTime: Date): number {
