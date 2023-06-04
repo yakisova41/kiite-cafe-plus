@@ -8,17 +8,23 @@ const NicoPlayer: React.FunctionComponent = () => {
   const { session, initialWatchData } = useNico();
 
   useEffect(() => {
-    navigator.mediaSession.metadata = new MediaMetadata({
-      title: initialWatchData?.data.video.title,
-      artist: initialWatchData?.data.owner.nickname,
-      artwork: [
-        {
-          src: String(initialWatchData?.data.video.thumbnail.url),
-          sizes: "130x100",
-          type: "image/jpeg",
-        },
-      ],
-    });
+    if (initialWatchData !== undefined) {
+      const nickname =
+        initialWatchData?.data.owner?.nickname ??
+        initialWatchData?.data.channel.name;
+
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: initialWatchData?.data.video.title,
+        artist: nickname,
+        artwork: [
+          {
+            src: String(initialWatchData?.data.video.thumbnail.url),
+            sizes: "130x100",
+            type: "image/jpeg",
+          },
+        ],
+      });
+    }
   }, [initialWatchData]);
 
   return (
