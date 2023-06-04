@@ -1,14 +1,24 @@
-import { useEffect, useRef } from "react";
+import {
+  useEffect,
+  useRef,
+  createContext,
+  type ReactNode,
+  useState,
+  useContext,
+} from "react";
 import { useNico } from "../nico-session-hooks";
 import getComments from "./getComments";
 import NiconiComments from "@xpadev-net/niconicomments";
 import { useVideoJS } from "../react-videojs-player-core";
 
-const Comments: React.FunctionComponent = () => {
+const Comments: React.FunctionComponent<{ children?: ReactNode }> = ({
+  children,
+}) => {
   const { initialWatchData } = useNico();
   const niconiComments = useRef<NiconiComments>();
   const commentInterval = useRef<NodeJS.Timer>();
   const vjsPlayer = useVideoJS();
+  const [isCommentShow, setCommentShow] = useState(true);
 
   useEffect(() => {
     const commentLayer =
@@ -44,7 +54,39 @@ const Comments: React.FunctionComponent = () => {
     }
   }, [initialWatchData]);
 
-  return <canvas id="comment-layer" width={1920} height={1080}></canvas>;
+  return (
+    <CommentContext.Provider
+      value={{
+        enable: () => {
+          setCommentShow(true);
+        },
+        disable: () => {
+          setCommentShow(false);
+        },
+        get: () => isCommentShow,
+      }}
+    >
+      <canvas
+        id="comment-layer"
+        className={isCommentShow ? "" : "comment-layer-hide"}
+        width={1920}
+        height={1080}
+      ></canvas>
+      {children}
+    </CommentContext.Provider>
+  );
 };
 
 export default Comments;
+
+export const CommentContext = createContext<CommentContextType | undefined>(
+  undefined
+);
+export const useComment: () => CommentContextType | undefined = () =>
+  useContext(CommentContext);
+
+export interface CommentContextType {
+  enable: () => void;
+  disable: () => void;
+  get: () => boolean;
+}

@@ -3,6 +3,7 @@ import { useNico } from "./nico-session-hooks";
 import PlayerWrapper from "./PlayerWrapper";
 import { useEffect } from "react";
 import Comments from "./comment/Comments";
+import Controls from "./controls";
 
 const NicoPlayer: React.FunctionComponent = () => {
   const { session, initialWatchData } = useNico();
@@ -32,13 +33,14 @@ const NicoPlayer: React.FunctionComponent = () => {
       <ReactVideoJSPlayer
         src={session?.data.session.content_uri}
         id="nico-player"
-        controls
         autoPlay
         playsInline
         options={{}}
       >
         <PlayerWrapper />
-        <Comments />
+        <Comments>
+          <Controls />
+        </Comments>
       </ReactVideoJSPlayer>
     </div>
   );

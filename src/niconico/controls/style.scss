@@ -1,0 +1,94 @@
+.video-controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  .initial-play-click-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .playButton {
+      $size: 80px;
+      background-color: rgb(41, 41, 41);
+      color: #fff;
+      width: $size;
+      height: $size;
+      border-radius: $size;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      svg {
+        width: calc($size / 2);
+        height: calc($size / 2);
+      }
+    }
+  }
+
+  .control-container {
+    .control-bar {
+      height: 45px;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 30%));
+      transition: ease 200ms opacity;
+      opacity: 1;
+      overflow: hidden;
+
+      .control-bar-button {
+        $btnSize: 45px;
+        float: left;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        width: $btnSize;
+        height: $btnSize;
+        margin: 0 2px;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+          color: #fff;
+          width: calc($btnSize * 0.6);
+          height: calc($btnSize * 0.6);
+        }
+      }
+
+      .video-time {
+        float: left;
+        height: 100%;
+        display: flex;
+        justify-self: center;
+        align-items: center;
+        margin-left: 10px;
+        padding: 0;
+
+        span {
+          color: #fff;
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .control-bar-hide {
+      opacity: 0;
+    }
+  }
+}

@@ -26,6 +26,10 @@ body {
           touch-action: none;
           pointer-events: none;
         }
+
+        .comment-layer-hide {
+          opacity: 0;
+        }
       }
     }
   }
