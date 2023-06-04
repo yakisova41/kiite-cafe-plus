@@ -19,6 +19,26 @@ export default async function getSession(
 }
 
 function payloadGenerator(initialWatchData: InitialWatchDataType): any {
+  const videoSrcIds = initialWatchData.data.media.delivery.movie.videos
+    .filter(({ isAvailable }) => {
+      if (isAvailable) {
+        return true;
+      }
+    })
+    .map(({ id }) => {
+      return id;
+    });
+
+  const audioSrcIds = initialWatchData.data.media.delivery.movie.audios
+    .filter(({ isAvailable }) => {
+      if (isAvailable) {
+        return true;
+      }
+    })
+    .map(({ id }) => {
+      return id;
+    });
+
   return {
     session: {
       recipe_id: "nicovideo-" + initialWatchData.data.video.id,
@@ -29,26 +49,14 @@ function payloadGenerator(initialWatchData: InitialWatchDataType): any {
           content_src_ids: [
             {
               src_id_to_mux: {
-                audio_src_ids: initialWatchData.data.media.delivery.movie.audios
-                  // eslint-disable-next-line array-callback-return
-                  .filter(({ isAvailable }) => {
-                    if (isAvailable) {
-                      return true;
-                    }
-                  })
-                  .map(({ id }) => {
-                    return id;
-                  }),
-                video_src_ids: initialWatchData.data.media.delivery.movie.videos
-                  // eslint-disable-next-line array-callback-return
-                  .filter(({ isAvailable }) => {
-                    if (isAvailable) {
-                      return true;
-                    }
-                  })
-                  .map(({ id }) => {
-                    return id;
-                  }),
+                audio_src_ids: audioSrcIds,
+                video_src_ids: videoSrcIds,
+              },
+            },
+            {
+              src_id_to_mux: {
+                audio_src_ids: [audioSrcIds[audioSrcIds.length - 1]],
+                video_src_ids: [videoSrcIds[videoSrcIds.length - 1]],
               },
             },
           ],
@@ -89,7 +97,7 @@ function payloadGenerator(initialWatchData: InitialWatchDataType): any {
       client_info: {
         player_id: initialWatchData.data.media.delivery.movie.session.playerId,
       },
-      priority: 0,
+      priority: initialWatchData.data.media.delivery.movie.session.priority,
     },
   };
 }

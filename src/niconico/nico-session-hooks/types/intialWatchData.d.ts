@@ -9,7 +9,7 @@ export interface InitialWatchDataType {
 export interface InitialWatchData {
   ads: null;
   category: null;
-  channel: null;
+  channel: Channel;
   client: Client;
   comment: Comment;
   community: null;
@@ -36,6 +36,18 @@ export interface InitialWatchData {
   waku: Waku;
 }
 
+export interface Channel {
+  id: string;
+  isDisplayAdBanner: boolean;
+  isOfficialAnime: boolean;
+  name: string;
+  thumbnail: {
+    url: string;
+    smallUrl: string;
+  };
+  viewer: null;
+}
+
 export interface VideoOwner {
   channel: null;
   iconUrl: string;
@@ -43,7 +55,7 @@ export interface VideoOwner {
   isMylistsPublic: boolean;
   isVideosPublic: boolean;
   live: null;
-  nickname: string;
+  nickname: string | null;
   videoLiveNotice: null;
   viewer: { isFollowing: boolean };
 }
