@@ -63,6 +63,13 @@ export class KiiteClientApp {
       this.nowPlayData = this.nextPlayData;
       this.sendMessage("setVideoId", this.nowPlayData.video_id);
     });
+
+    this.postMessage.addMessageListener("timeSyncRequest", () => {
+      this.sendMessage(
+        "setTime",
+        this.getNowCurrentTime(this.nowPlayData.start_time)
+      );
+    });
   }
 
   private overridePlayer(): HTMLIFrameElement {
@@ -99,7 +106,7 @@ export class KiiteClientApp {
   private volumeChangeHandler(): void {
     const volumeValEl = document.querySelector(".volume > .button > .value");
 
-    const getVolSend = () => {
+    const getVolSend = (): void => {
       const volume = Number(volumeValEl?.innerHTML) / 100;
       this.sendMessage("setVolume", volume);
 
