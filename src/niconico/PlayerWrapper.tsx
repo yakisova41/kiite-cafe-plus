@@ -61,16 +61,22 @@ const PlayerWrapper: React.FunctionComponent = () => {
         }
       };
 
-      vjsplayer.on("pause", () => {
-        document.addEventListener("visibilitychange", handlevisibilityChange);
+      /**
+       * iosの場合は再生停止後0.5s以内にタブがバックグラウンドに回った時に
+       * 再生再開
+       */
+      if (navigator.userAgent.match("iPhone|iPad") !== null) {
+        vjsplayer.on("pause", () => {
+          document.addEventListener("visibilitychange", handlevisibilityChange);
 
-        setTimeout(() => {
-          document.removeEventListener(
-            "visibilitychange",
-            handlevisibilityChange
-          );
-        }, 500);
-      });
+          setTimeout(() => {
+            document.removeEventListener(
+              "visibilitychange",
+              handlevisibilityChange
+            );
+          }, 500);
+        });
+      }
     }
   }, []);
 
