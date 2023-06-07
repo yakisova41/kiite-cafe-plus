@@ -27,7 +27,6 @@ const PlayerWrapper: React.FunctionComponent = () => {
       });
 
       postMessage.addMessageListener("setVolume", ({ value }) => {
-        console.log(value);
         void vjsplayer.volume(value);
       });
 
@@ -54,6 +53,23 @@ const PlayerWrapper: React.FunctionComponent = () => {
 
       vjsplayer.on("ended", () => {
         postMessage.sendParent("ended", null);
+      });
+
+      const handlevisibilityChange = (): void => {
+        if (document.visibilityState === "hidden") {
+          void vjsplayer.play();
+        }
+      };
+
+      vjsplayer.on("pause", () => {
+        document.addEventListener("visibilitychange", handlevisibilityChange);
+
+        setTimeout(() => {
+          document.removeEventListener(
+            "visibilitychange",
+            handlevisibilityChange
+          );
+        }, 500);
       });
     }
   }, []);
