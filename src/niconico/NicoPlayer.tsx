@@ -12,7 +12,8 @@ const NicoPlayer: React.FunctionComponent = () => {
     if (initialWatchData !== undefined) {
       const nickname =
         initialWatchData?.data.owner?.nickname ??
-        initialWatchData?.data.channel.name;
+        initialWatchData?.data.channel.name ??
+        "UNKNOWN";
 
       void trimArtWork(
         String(initialWatchData?.data.video.thumbnail.player)
