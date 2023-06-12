@@ -23,7 +23,7 @@
 
 - Safari の拡張機能である[Userscripts(AppStore)](https://apps.apple.com/jp/app/userscripts/id1463298887)をインストールします
 - 設定 -> Safari -> 拡張機能 -> Userscripts のトグルを ON にします。
-- [Greasyfork(スクリプトホスティングサイト)](#)へ移動して「スクリプトをインストール」をタップ
+- [Greasyfork(スクリプトホスティングサイト)](https://greasyfork.org/ja/scripts/468499-kiite-cafe-plus)へ移動して「スクリプトをインストール」をタップ
 - アドレスバーの「ぁあ」の右にあるボタンをタップ
 - Userscripts をタップ
 - 「Userscript Detected: Tap to install」をタップ
@@ -32,4 +32,4 @@
 ### パソコンの場合
 
 - [Tampermonkey](https://www.tampermonkey.net/)等お使いのブラウザに合った userscript マネージャーをインストール
-- [Greasyfork(スクリプトホスティングサイト)](#)へ移動して「スクリプトをインストール」をクリック
+- [Greasyfork(スクリプトホスティングサイト)](https://greasyfork.org/ja/scripts/468499-kiite-cafe-plus)へ移動して「スクリプトをインストール」をクリック
