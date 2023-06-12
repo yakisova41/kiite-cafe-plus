@@ -19,4 +19,17 @@
 
 ## インストール方法
 
-あなたは「${お使いの使用 OS 名} userScript のインストール方法」を[Google](https://google.com)で検索することが出来ます。
+### iPhone の場合
+
+- Safari の拡張機能である[Userscripts(AppStore)](https://apps.apple.com/jp/app/userscripts/id1463298887)をインストールします
+- 設定 -> Safari -> 拡張機能 -> Userscripts のトグルを ON にします。
+- [Greasyfork(スクリプトホスティングサイト)](#)へ移動して「スクリプトをインストール」をタップ
+- アドレスバーの「ぁあ」の右にあるボタンをタップ
+- Userscripts をタップ
+- 「Userscript Detected: Tap to install」をタップ
+- 下にスクロールして Install をタップ
+
+### パソコンの場合
+
+- [Tampermonkey](https://www.tampermonkey.net/)等お使いのブラウザに合った userscript マネージャーをインストール
+- [Greasyfork(スクリプトホスティングサイト)](#)へ移動して「スクリプトをインストール」をクリック
