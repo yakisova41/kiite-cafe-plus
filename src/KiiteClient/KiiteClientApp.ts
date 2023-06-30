@@ -134,8 +134,7 @@ export class KiiteClientApp {
     const startDate = new Date(startTime);
     const nowDate = new Date();
     const diffMs = nowDate.getTime() - startDate.getTime();
-    const currentTime = Math.floor(diffMs / 1000);
-
+    const currentTime = Math.floor(diffMs / 100) / 10;
     return currentTime;
   }
 
