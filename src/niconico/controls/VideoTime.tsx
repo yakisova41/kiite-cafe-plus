@@ -1,4 +1,4 @@
-import { useVideoJS } from "../react-videojs-player-core";
+import { useVideoJS } from "niconico-react-vjs";
 import React, { useRef, useEffect, useState } from "react";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";

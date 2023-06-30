@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useVideoJS } from "./react-videojs-player-core";
+import { useVideoJS } from "niconico-react-vjs";
 import { usePostMessage } from "./post-message-hooks";
 
 /**

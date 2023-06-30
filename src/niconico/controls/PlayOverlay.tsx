@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MdPlayArrow } from "react-icons/md";
-import { useVideoJS } from "../react-videojs-player-core";
+import { useVideoJS } from "niconico-react-vjs";
 
 const PlayOverlay: React.FunctionComponent = () => {
   const player = useVideoJS();
