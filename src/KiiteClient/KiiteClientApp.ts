@@ -21,9 +21,11 @@ export class KiiteClientApp {
       this.iframe = this.overridePlayerPC();
     }
     this.postMessage = new PostMessageEventUtil(this.origin);
+
+    debugLog("Kiite cafe plus Loaded");
   }
 
-  public async start(): Promise<void> {
+  public start(): void {
     this.postMessage.addMessageListener("videojsAttached", () => {
       if (this.mode === "pc") {
         this.volumeChangeHandler();
@@ -159,6 +161,33 @@ export class KiiteClientApp {
       "https://cafeapi.kiite.jp/api/cafe/next_song"
     );
     return JSON.parse(await nowPlayRes.text());
+  }
+
+  public attachDebugCommands(): void {
+    debugLog("attach debug commands");
+    window._kcp = {
+      setVideo: (id: string) => {
+        this.sendMessage("setVideoId", id);
+        return "Success!";
+      },
+
+      setTime: (time: number) => {
+        this.sendMessage("setTime", time);
+        return "Success!";
+      },
+
+      reSync: () => {
+        void this.getNowPlaying().then((now) => {
+          this.sendMessage("setVideoId", now.video_id);
+          this.nowPlayData = now;
+        });
+        this.sendMessage(
+          "setTime",
+          this.getNowCurrentTime(this.nowPlayData.start_time)
+        );
+        return "Success!";
+      },
+    };
   }
 }
 
