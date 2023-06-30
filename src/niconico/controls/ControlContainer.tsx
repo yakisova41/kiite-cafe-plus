@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useVideoJS } from "../react-videojs-player-core";
+import { useVideoJS } from "niconico-react-vjs";
 import ControlBar from "./ControlBar";
 import { usePostMessage } from "../post-message-hooks";
 

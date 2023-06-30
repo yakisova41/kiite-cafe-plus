@@ -7,9 +7,9 @@ body {
     .embed-wrapper {
       width: 100%;
       height: 100%;
-      .nico-player-outer {
-        width: 100%;
-        height: 100%;
+      .niconico-react-vjs {
+        width: 100% !important;
+        height: 100% !important;
         position: relative;
 
         #nico-player {

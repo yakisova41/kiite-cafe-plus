@@ -1,12 +1,10 @@
-import ReactVideoJSPlayer from "./react-videojs-player-core";
-import { useNico } from "./nico-session-hooks";
+import { useNico } from "niconico-react-vjs/dist";
 import PlayerWrapper from "./PlayerWrapper";
 import { useEffect } from "react";
-import Comments from "./comment/Comments";
 import Controls from "./controls";
 
 const NicoPlayer: React.FunctionComponent = () => {
-  const { session, initialWatchData } = useNico();
+  const { initialWatchData } = useNico();
 
   useEffect(() => {
     if (initialWatchData !== undefined) {
@@ -35,18 +33,8 @@ const NicoPlayer: React.FunctionComponent = () => {
 
   return (
     <div className="nico-player-outer">
-      <ReactVideoJSPlayer
-        src={session?.data.session.content_uri}
-        id="nico-player"
-        autoPlay
-        playsInline
-        options={{}}
-      >
-        <PlayerWrapper />
-        <Comments>
-          <Controls />
-        </Comments>
-      </ReactVideoJSPlayer>
+      <Controls />
+      <PlayerWrapper />
     </div>
   );
 };

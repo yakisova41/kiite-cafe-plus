@@ -6,10 +6,9 @@ import {
   MdOutlineCommentsDisabled,
   MdOutlineComment,
 } from "react-icons/md";
-import { useVideoJS } from "../react-videojs-player-core";
+import { useVideoJS, useComment } from "niconico-react-vjs";
 import { useEffect, useState } from "react";
 import VideoTime from "./VideoTime";
-import { useComment } from "../comment/Comments";
 
 const ControlBar: React.FunctionComponent<{
   show: boolean;
